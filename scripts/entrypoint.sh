@@ -136,6 +136,13 @@ if [ ! -f "$INITALIZED" ]; then
 
     echo ">> VOLUME: adding volume: $VOL_NAME (path=$VOL_PATH)"
 
+    VALID_USERS=$(echo "$CONF_CONF_VALUE" | tr ';' '\n' | grep 'valid users' | sed 's/.*= *//g')
+    for user in $VALID_USERS; do
+      echo "  user: $user"
+      chown $user.$user -R "$VOL_PATH"
+    done
+
+
     # if time machine volume
     if echo "$CONF_CONF_VALUE" | sed 's/;/\n/g' | grep 'fruit:time machine' | grep yes 2>/dev/null >/dev/null;
     then
