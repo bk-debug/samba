@@ -43,6 +43,7 @@ services:
       
       SAMBA_VOLUME_CONFIG_timemachine: "[TimeMachine]; path=/shares/timemachine/%U; valid users = alice, bob, foo; guest ok = no; read only = no; browseable = yes; fruit:time machine = yes; fruit:time machine max size = 500G"
     volumes:
+      - ./etc/:/external/avahi
       - ./shares/alice:/shares/alice
       - ./shares/alice-hidden:/shares/alice-hidden
       - ./shares/bob:/shares/bob
